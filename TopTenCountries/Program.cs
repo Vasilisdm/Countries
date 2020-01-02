@@ -6,7 +6,16 @@ namespace TopTenCountries
     {
         static void Main(string[] args)
         {
-            
+            string filePath = @"";
+
+            CsvReader csvReader = new CsvReader(filePath);
+
+            Country[] countries = csvReader.ReadFirstNCoutries(10);
+
+            foreach (Country country in countries)
+            {
+                Console.WriteLine($"Population: {country.Population}, Country Name: {country.Name}");
+            }
         }
     }
 }
