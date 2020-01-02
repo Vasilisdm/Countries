@@ -10,7 +10,7 @@ namespace TopTenCountries
 
         private string _csvFilePath;
 
-        public Country ReadFirstNCoutries(int nCountries)
+        public Country[] ReadFirstNCoutries(int nCountries)
         {
             return null;
         }
