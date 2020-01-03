@@ -12,7 +12,8 @@ namespace TopTenCountries
 
         public Country[] ReadFirstNCoutries(int nCountries)
         {
-            return null;
+            Country[] countries = new Country[nCountries];
+            return countries;
         }
     }
 }
