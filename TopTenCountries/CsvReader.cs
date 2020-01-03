@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+
 namespace TopTenCountries
 {
     public class CsvReader
@@ -13,6 +15,19 @@ namespace TopTenCountries
         public Country[] ReadFirstNCoutries(int nCountries)
         {
             Country[] countries = new Country[nCountries];
+
+            using (StreamReader streamReader = new StreamReader(_csvFilePath))
+            {
+                // Read pass the header line of the csv file
+                streamReader.ReadLine();
+
+                for (int i = 0; i < nCountries; i++)
+                {
+                    string csvLine = streamReader.ReadLine();
+                    countries[i] = ReadCountryFromCsvFile(csvLine);
+                }
+            }
+
             return countries;
         }
 
