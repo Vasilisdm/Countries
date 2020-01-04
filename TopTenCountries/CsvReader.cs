@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace CountriesPopulation
@@ -34,13 +35,39 @@ namespace CountriesPopulation
         public Country ReadCountryFromCsvFile(string csvLine)
         {
             string[] countriesInfo = csvLine.Split(',');
+            string countryName;
+            string countryCode;
+            string continent;
+            string populationText;
 
-            string countryName = countriesInfo[0];
-            string countryCode = countriesInfo[1];
-            string continent = countriesInfo[2];
-            int population = int.Parse(countriesInfo[3]);
+            switch (countriesInfo.Length)
+            {
+                case 4:
+                    countryName = countriesInfo[0];
+                    countryCode = countriesInfo[1];
+                    continent = countriesInfo[2];
+                    populationText = countriesInfo[3];
+                    break;
+                case 5:
+                    countryName = countriesInfo[0] + ", " + countriesInfo[1];
+                    countryName = countryName.Replace("\"", null).Trim();
+                    countryCode = countriesInfo[2];
+                    continent = countriesInfo[3];
+                    populationText = countriesInfo[4];
+                    break;
+                default:
+                    throw new Exception($"Not able to parse country from csv line: {csvLine}");
+            }
+
+            int population = ConvertPopulationTextToInt(populationText);
 
             return new Country(countryName, countryCode, continent, population);
+        }
+
+        private static int ConvertPopulationTextToInt(string populationText)
+        {
+            int.TryParse(populationText, out int population);
+            return population;
         }
     }
 }
