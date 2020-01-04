@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace CountriesPopulation
 {
@@ -11,19 +12,19 @@ namespace CountriesPopulation
 
         private string _csvFilePath;
 
-        public Country[] ReadFirstNCoutries(int nCountries)
+        public List<Country> ReadAllCountries()
         {
-            Country[] countries = new Country[nCountries];
+            List<Country> countries = new List<Country>();
 
             using (StreamReader streamReader = new StreamReader(_csvFilePath))
             {
                 // Read pass the header line of the csv file
                 streamReader.ReadLine();
 
-                for (int i = 0; i < nCountries; i++)
+                string csvLine;
+                while ((csvLine = streamReader.ReadLine()) != null)
                 {
-                    string csvLine = streamReader.ReadLine();
-                    countries[i] = ReadCountryFromCsvFile(csvLine);
+                    countries.Add(ReadCountryFromCsvFile(csvLine));
                 }
             }
 
