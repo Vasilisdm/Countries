@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CountriesPopulation
 {
@@ -11,22 +12,28 @@ namespace CountriesPopulation
 
             CsvReader csvReader = new CsvReader(filePath);
 
-            Dictionary<string, Country> countries = csvReader.ReadAllCountries();
+            Dictionary<string, List<Country>> countries = csvReader.ReadAllCountries();
 
-            Console.WriteLine("Which county do you want to look up?");
-            string countryToBeSearched = Console.ReadLine();
-
-            bool countryExists = countries.TryGetValue(countryToBeSearched, out Country country);
-
-            if (!countryExists)
+            Console.WriteLine($"Available regions\n");
+            foreach (string region in countries.Keys)
             {
-                Console.WriteLine($"Sorry, there is no country with code: {countryToBeSearched}");
+                Console.WriteLine(region);
+            }
+
+            Console.WriteLine("\nChoose one of the above regions to see its countries and their population.");
+            string chosenRegion = Console.ReadLine();
+
+            if (countries.ContainsKey(chosenRegion))
+            {
+                foreach (Country country in countries[chosenRegion].Take(10))
+                {
+                    Console.WriteLine($"Population: {PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)}: {country.Name}");
+                }
             }
             else
             {
-                Console.WriteLine($"{country.Name} has population of: {PopulationFormatter.FormatPopulation(country.Population)}");
+                Console.WriteLine("That is not a valid region");
             }
-
         }
     }
 }
