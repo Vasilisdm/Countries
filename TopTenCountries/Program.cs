@@ -17,6 +17,8 @@ namespace CountriesPopulation
             {
                 Console.WriteLine($"Population: {PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)}, Country Name: {country.Name}");
             }
+
+            Console.WriteLine($"Total countries: {countries.Count}");
         }
     }
 }
