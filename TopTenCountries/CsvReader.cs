@@ -64,7 +64,7 @@ namespace CountriesPopulation
             return new Country(countryName, countryCode, continent, population);
         }
 
-        private static int ConvertPopulationTextToInt(string populationText)
+        private int ConvertPopulationTextToInt(string populationText)
         {
             int.TryParse(populationText, out int population);
             return population;
