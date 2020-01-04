@@ -6,7 +6,7 @@ namespace TopTenCountries
     {
         static void Main(string[] args)
         {
-            string filePath = @"";
+            string filePath = @"/Users/vasilisdimitriou/Documents/population.csv";
 
             CsvReader csvReader = new CsvReader(filePath);
 
