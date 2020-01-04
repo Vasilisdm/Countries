@@ -13,9 +13,9 @@ namespace CountriesPopulation
 
         private string _csvFilePath;
 
-        public Dictionary<string, Country> ReadAllCountries()
+        public Dictionary<string, List<Country>> ReadAllCountries()
         {
-            Dictionary<string, Country> countries = new Dictionary<string, Country>();
+            var countries = new Dictionary<string, List<Country>>();
 
             using (StreamReader streamReader = new StreamReader(_csvFilePath))
             {
@@ -26,7 +26,16 @@ namespace CountriesPopulation
                 while ((csvLine = streamReader.ReadLine()) != null)
                 {
                     Country country = ReadCountryFromCsvFile(csvLine);
-                    countries.Add(country.Code, country);
+
+                    if (countries.ContainsKey(country.Region))
+                    {
+                        countries[country.Region].Add(country);
+                    }
+                    else
+                    {
+                        List<Country> countriesInRegion = new List<Country> { country };
+                        countries.Add(country.Region, countriesInRegion);
+                    }
                 }
             }
 
