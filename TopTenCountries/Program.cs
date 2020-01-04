@@ -24,7 +24,7 @@ namespace CountriesPopulation
             }
             else
             {
-                Console.WriteLine($"{country.Name} has population of: {country.Population}");
+                Console.WriteLine($"{country.Name} has population of: {PopulationFormatter.FormatPopulation(country.Population)}");
             }
 
         }
