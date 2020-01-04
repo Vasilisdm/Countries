@@ -11,18 +11,22 @@ namespace CountriesPopulation
 
             CsvReader csvReader = new CsvReader(filePath);
 
-            List<Country> countries = csvReader.ReadAllCountries();
+            Dictionary<string, Country> countries = csvReader.ReadAllCountries();
 
-            Country lilliput = new Country("Lilliput", "LIL", "SomeWhere", 2_000_000);
-            int lilliputIndex = countries.FindIndex(c=>c.Population < 2_000_000);
-            countries.Insert(lilliputIndex, lilliput);
+            Console.WriteLine("Which county do you want to look up?");
+            string countryToBeSearched = Console.ReadLine();
 
-            foreach (Country country in countries)
+            bool countryExists = countries.TryGetValue(countryToBeSearched, out Country country);
+
+            if (!countryExists)
             {
-                Console.WriteLine($"Population: {PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)}, Country Name: {country.Name}");
+                Console.WriteLine($"Sorry, there is no country with code: {countryToBeSearched}");
+            }
+            else
+            {
+                Console.WriteLine($"{country.Name} has population of: {country.Population}");
             }
 
-            Console.WriteLine($"Total countries: {countries.Count}");
         }
     }
 }
