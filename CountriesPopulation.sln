@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopTenCountries", "TopTenCountries\TopTenCountries.csproj", "{443D3FB5-80C2-43E4-8A9A-4CBC80155CD8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountriesPopulation", "TopTenCountries\CountriesPopulation.csproj", "{443D3FB5-80C2-43E4-8A9A-4CBC80155CD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

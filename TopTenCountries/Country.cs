@@ -1,5 +1,4 @@
-﻿using System;
-namespace TopTenCountries
+﻿namespace CountriesPopulation
 {
     public class Country
     {

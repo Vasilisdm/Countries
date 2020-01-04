@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TopTenCountries
+namespace CountriesPopulation
 {
     class Program
     {
